@@ -1,0 +1,76 @@
+/* static/css/style.css */
+
+body {
+    background-image: url('/static/background.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+
+.row-bg-banner01 {
+    position: relative;
+    background-image: url("/static/banner01.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.row-bg-banner04 {
+    position: relative;
+    background-image: url("/static/banner04.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.row-bg-banner07 {
+    position: relative;
+    background-image: url("/static/banner07.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.row-bg-banner10 {
+    position: relative;
+    background-image: url("/static/banner10.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.row-bg-banner12 {
+    position: relative;
+    background-image: url("/static/banner12.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.row-bg-banner17 {
+    position: relative;
+    background-image: url("/static/banner17.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.row-bg-banner18 {
+    position: relative;
+    background-image: url("/static/banner18.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.text-outline-shadow {
+  text-shadow:
+    -1px -1px 0 #AAAAAA,  /* 左上 */
+    1px -1px 0 #AAAAAA,   /* 右上 */
+    -1px 1px 0 #AAAAAA,   /* 左下 */
+    1px 1px 0 #AAAAAA;    /* 右下 */
+}
+
+
