@@ -28,25 +28,25 @@
             </form>
         </div>
     </header>
-    <main class="shadow-sm my-3 py-3 flex-grow-1">
-        <div class="container text-center">
-            <h1>Taimu Raito</h1>
-            <div class="container mt-3">
-                <div class="row my-2 align-items-center ">
-                    <div class="col-3 fw-bold"></div>
-                    <div class="col-6 fw-bold"></div>
-                    <div class="col-3">
-                        <div id="timer-display" class="display-6 fw-bolder text-dark pb-2">--:--:--.---</div>
-                    </div>
-                </div>
 
-                <div class="row my-2 align-items-center ">
-                    <div class="col-3 fw-bold display-6">MOMENTS</div>
-                    <div class="col-6 fw-bold display-6">COUNTDOWN</div>
-                    <div class="col-3 fw-bold display-6">WHEN</div>
+    <main class="shadow-sm my-3 py-3 flex-grow-1 text-center">        
+        <h1>Taimu Raito</h1>
+        <div class="container my-3">
+            <div class="row my-2 align-items-center ">
+                <div class="col-3 fw-bold"></div>
+                <div class="col-6 fw-bold"></div>
+                <div class="col-3">
+                    <div id="timer-display" class="display-6 fw-bolder text-dark pb-2">--:--:--.---</div>
                 </div>
+            </div>
 
-                <div class="row my-2 align-items-center ">
+            <div class="row m-2 align-items-center ">
+                <div class="col-3 fw-bold display-6">MOMENTS</div>
+                <div class="col-6 fw-bold display-6">COUNTDOWN</div>
+                <div class="col-3 fw-bold display-6">WHEN</div>
+            </div>
+            <div class="card shadow-lg rounded-3 mb-3 bg-light bg-opacity-10">
+                <div class="row m-2 align-items-center gx-0">
                     <div class="col-3 display-6 row-bg-banner10">Next Sunrise</div>
                         <div class="col-6 row-bg-banner07">
                             <div id="sunrise-countdown-display" class="display-6 fw-bold">--:--:--.---</div>
@@ -55,11 +55,13 @@
                             <div id="sunrise-display" class="display-6">--:--:--.---</div>
                         </div>
                 </div>
-                <div class="progress">
+
+                <div class="progress m-2">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:10%" id="sunrise-countdown-progress"></div>
                 </div>
-
-                <div class="row my-2 align-items-center ">
+            </div>
+            <div class="card shadow-lg rounded-3 mb-3 bg-light bg-opacity-10">
+                <div class="row m-2 align-items-center ">
                     <div class="col-3 display-6 row-bg-banner17">Next Sunset</div>
                     <div class="col-6 fw-bold row-bg-banner07">
                         <div class="display-6 fw-bold"  id="sunset-countdown-display">--:--:--.---</div>
@@ -68,11 +70,12 @@
                         <div id="sunset-display" class="display-6">--:--:--.---</div>
                     </div>
                 </div>
-                <div class="progress">
+                <div class="progress m-2">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:10%" id="sunset-countdown-progress"></div>
                 </div>
-
-                <div class="row my-2 align-items-center ">
+            </div>
+            <div class="card shadow-lg rounded-3 mb-3 bg-light bg-opacity-10">
+                <div class="row m-2 align-items-center ">
                     <div class="col-3 display-6 row-bg-banner18">
                         <span class="season-name" id="next-season-name-1">Next Season: </span>
                     </div>
@@ -83,11 +86,13 @@
                         <div class="fs-4 season-time" id="next-season-time-1">--:--:--.---</div>
                     </div>
                 </div>
-                <div class="progress">
+                <div class="progress m-2">
                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-info season-countdown-progress" style="width:10%"></div>
                 </div>
+            </div>            
 
-                <div class="row my-2 align-items-center">
+            <div class="card shadow-lg rounded-3 mb-3 bg-light bg-opacity-10">
+                <div class="row m-2 align-items-center">
                     <div class="col-3 display-6  row-bg-banner12">
                         <span class="season-name" id="next-season-name-2">Next Season: </span>
                     </div>
@@ -98,11 +103,13 @@
                         <div class="fs-4 season-time" id="next-season-time-2">--:--:--.---</div>
                     </div>
                 </div>
-                <div class="progress">
+                <div class="progress m-2">
                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-info season-countdown-progress" style="width:10%"></div>
                 </div>
+            </div>
 
-                <div class="row my-2 align-items-center">
+            <div class="card shadow-lg rounded-3 mb-3 bg-light bg-opacity-10">
+                <div class="row m-2 align-items-center">
                     <div class="col-3 display-6  row-bg-banner01">
                         <span class="season-name" id="next-season-name-3">Next Season: </span>
                     </div>
@@ -113,11 +120,13 @@
                         <div class="fs-4 season-time" id="next-season-time-3">--:--:--.---</div>
                     </div>
                 </div>
-                <div class="progress">
+                <div class="progress m-2">
                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-info season-countdown-progress" style="width:10%"></div>
                 </div>
+            </div>
 
-                <div class="row my-2 align-items-center">
+            <div class="card shadow-lg rounded-3 mb-3 bg-light bg-opacity-10">
+                <div class="row m-2 align-items-center">
                     <div class="col-3 display-6 row-bg-banner04">
                         <span class="season-name" id="next-season-name-4">Next Season: </span>
                     </div>
@@ -128,12 +137,11 @@
                         <div class="fs-4 season-time" id="next-season-time-4">--:--:--.---</div>
                     </div>
                 </div>
-                <div class="progress">
+                <div class="progress m-2">
                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-info season-countdown-progress" style="width:10%"></div>
                 </div>
-
             </div>
-        </div>
+        </div>        
     </main>
     <footer class="shadow-sm my-3 py-3">
         <div class="container text-center">
