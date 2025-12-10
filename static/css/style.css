@@ -1,7 +1,7 @@
 /* static/css/style.css */
 
 body {
-    background-image: url('/static/background.png');
+    background-image: url('../background.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -11,7 +11,7 @@ body {
 
 .row-bg-banner01 {
     position: relative;
-    background-image: url("/static/banner01.png");
+    background-image: url("../banner01.png");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -19,7 +19,7 @@ body {
 
 .row-bg-banner04 {
     position: relative;
-    background-image: url("/static/banner04.png");
+    background-image: url("../banner04.png");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -27,7 +27,7 @@ body {
 
 .row-bg-banner07 {
     position: relative;
-    background-image: url("/static/banner07.png");
+    background-image: url("../banner07.png");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -35,7 +35,7 @@ body {
 
 .row-bg-banner10 {
     position: relative;
-    background-image: url("/static/banner10.png");
+    background-image: url("../banner10.png");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -43,7 +43,7 @@ body {
 
 .row-bg-banner12 {
     position: relative;
-    background-image: url("/static/banner12.png");
+    background-image: url("../banner12.png");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -51,7 +51,7 @@ body {
 
 .row-bg-banner17 {
     position: relative;
-    background-image: url("/static/banner17.png");
+    background-image: url("../banner17.png");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -59,7 +59,7 @@ body {
 
 .row-bg-banner18 {
     position: relative;
-    background-image: url("/static/banner18.png");
+    background-image: url("../banner18.png");
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
