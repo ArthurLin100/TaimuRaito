@@ -297,8 +297,6 @@ function updateSunsetCountdown() {
     //update progress bar
     const bar = document.getElementById('sunset-countdown-progress');
     const percent = (Math.floor(diffMs / 86400000 * 100)) % 100; // 24*60*60*1000 =86400000 ms. If more than 100, which means more than one day, then truncate to within 1 day
-    console.log("sunset diffMs = " + diffMs);
-    console.log("sunset percent = " + percent);
     bar.style.width = percent + "%";
 }
 
