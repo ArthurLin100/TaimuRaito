@@ -141,6 +141,32 @@
                     <div class="progress-bar progress-bar-striped progress-bar-animated bg-info season-countdown-progress" style="width:10%"></div>
                 </div>
             </div>
+
+            <div class="card shadow-lg rounded-3 mb-3 bg-secondary bg-opacity-10">
+                <div class="row m-2 align-items-center">
+                    <div class="col justify-content-start d-flex">
+                        <form class="d-flex gap-2">
+                            <input type="text" id="user-timer-name-input" class="form-control form-control-sm w-auto" required autocomplete="off" placeholder="Timer Name">
+                            <input type="datetime-local" id="user-timer-time-input" class="form-control form-control-sm w-auto" required placeholder="HH:MM:SS">
+                            <button type="button" class="btn btn-light btn-sm" id="user-timer-add-btn">Add</button>                        
+                        </form>
+                    </div>
+                </div>
+                <div class="row m-2 align-items-center">
+                    <div class="col-3 display-6 row-bg-banner04">
+                        <span id="user-timer-name">My Timer: </span>
+                    </div>
+                    <div class="col-6 fw-bold row-bg-banner07">
+                        <div class="display-6 fw-bold" id="user-timer-countdown">--:--:--.---</div>
+                    </div>
+                    <div class="col-3 row-bg-banner07">
+                        <div class="fs-4" id="user-timer-time">--:--:--.---</div>
+                    </div>
+                </div>
+                <div class="progress m-2">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning-subtle" id="user-timer-progress" style="width:10%"></div>
+                </div>
+            </div>
         </div>        
     </main>
     <footer class="shadow-sm my-3 py-3">

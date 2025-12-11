@@ -5,6 +5,9 @@ import { seasons } from './seasons_2025_2100.js';
 let NextSunriseTime = null;
 let NextSunsetTime = null;
 let TheNext4Seasons = null;
+let UserTimerTimeInputDate = null;
+let UserTimerSetDate = null;
+let UserTimerTotalMs = null;
 
 function collectThe8Seasons(the2Years, thisYear, the8Seasons) {
     for (const event of the2Years) {
@@ -300,6 +303,50 @@ function updateSunsetCountdown() {
     bar.style.width = percent + "%";
 }
 
+document.getElementById("user-timer-add-btn").addEventListener("click", () => {
+    const userTimerNameInput = document.getElementById("user-timer-name-input");
+    const userTimerTimeInput = document.getElementById("user-timer-time-input");
+    
+    if (!userTimerNameInput.value || !userTimerTimeInput.value) {
+        alert("Please enter both timer name and time.");
+        return;
+    }
+
+    UserTimerTimeInputDate = new Date(userTimerTimeInput.value); // update the GLOBAL VARIABLE
+    const now = new Date();
+    const diffMs = UserTimerTimeInputDate - now;
+    if (diffMs <= 0) {
+        alert("Please enter a future date and time.");
+        return;
+    }
+
+    UserTimerSetDate = now; // store the time when the user set the timer
+    UserTimerTotalMs = diffMs; // store the total duration for progress bar calculation
+    const [dateStr, timeStr] = dateToDisplayStr(UserTimerTimeInputDate);
+
+    const userTimerName = document.getElementById("user-timer-name");
+    const userTimerTime = document.getElementById("user-timer-time");
+    userTimerName.textContent = userTimerNameInput.value;
+    userTimerTime.textContent = dateStr + " " + timeStr;    
+    
+});
+
+function updateUserCountdown() {
+    if (!UserTimerTimeInputDate) return;
+    const now = new Date();
+    const diffMs = UserTimerTimeInputDate - now;
+    if (diffMs <= 0) {
+        document.getElementById('user-timer-countdown').textContent = "00:00:00:000";
+        return;
+    }
+    const countdownStr = dateDeltaToCountdownStr(diffMs, 0);
+    document.getElementById('user-timer-countdown').textContent = countdownStr;
+
+    //update progress bar
+    const bar = document.getElementById('user-timer-progress');
+    const percent = (Math.floor(diffMs / UserTimerTotalMs * 100));
+    bar.style.width = percent + "%";
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     updateCurrentTime();
@@ -311,4 +358,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateSunriseCountdown, 100);
     setInterval(updateSunsetCountdown, 100);
     setInterval(update4SeasonsCountdown, 100);
+    setInterval(updateUserCountdown, 100);
 });
