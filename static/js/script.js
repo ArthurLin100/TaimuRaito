@@ -365,7 +365,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateSunriseCountdown, 100);
     setInterval(updateSunsetCountdown, 100);
     setInterval(update4SeasonsCountdown, 100);
-    if (UserTimerInputDate){
-        setInterval(updateUserCountdown, 100);
-    }
+    setInterval(updateUserCountdown, 100);
+
 });
