@@ -341,8 +341,8 @@ document.getElementById("user-timer-set-btn").addEventListener("click", () => {
     const userTimerNameInput = document.getElementById("user-timer-name-input");
     const userTimerTimeInput = document.getElementById("user-timer-time-input");
     
-    if (!userTimerNameInput.value || !userTimerTimeInput.value) {
-        alert("Please enter both timer name and time.");
+    if (!userTimerTimeInput.value) {
+        alert("Please enter and time.");
         return;
     }
 
@@ -360,11 +360,13 @@ document.getElementById("user-timer-set-btn").addEventListener("click", () => {
 
     const userTimerName = document.getElementById("user-timer-name");
     const userTimerTime = document.getElementById("user-timer-time");
-    userTimerName.textContent = userTimerNameInput.value;
-    userTimerTime.textContent = dateStr + " " + timeStr;    
+    userTimerTime.textContent = dateStr + " " + timeStr;
+    if (userTimerNameInput.value){
+        userTimerName.textContent = userTimerNameInput.value;
+        localStorage.setItem("UserTimerName", userTimerNameInput.value); // store the timer info to cache
+    }    
 
     // store the timer info to cache
-    localStorage.setItem("UserTimerName", userTimerNameInput.value);    
     localStorage.setItem("UserTimerInputDate", UserTimerInputDate.getTime());
     localStorage.setItem("UserTimerTotalMs", UserTimerTotalMs);
 
