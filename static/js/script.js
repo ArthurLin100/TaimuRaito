@@ -5,7 +5,7 @@ import { seasons } from './seasons_2025_2100.js';
 let NextSunriseTime = null;
 let NextSunsetTime = null;
 let TheNext4Seasons = null;
-let UserTimerTimeInputDate = null;
+let UserTimerInputDate = null;
 let UserTimerSetDate = null;
 let UserTimerTotalMs = null;
 
@@ -230,7 +230,7 @@ function dateDeltaToCountdownStr( diffMs, within24HoursFlag ) {
         const countdownStr = days.toString() + " Days " +
                             hours.toString().padStart(2, '0') + ":" +
                             minutes.toString().padStart(2, '0') + ":" +
-                            seconds.toString().padStart(2, '0') + ":" +
+                            seconds.toString().padStart(2, '0') + "." +
                             milliseconds.toString().padStart(3, '0');
         return countdownStr;
     }
@@ -303,7 +303,7 @@ function updateSunsetCountdown() {
     bar.style.width = percent + "%";
 }
 
-document.getElementById("user-timer-add-btn").addEventListener("click", () => {
+document.getElementById("user-timer-set-btn").addEventListener("click", () => {
     const userTimerNameInput = document.getElementById("user-timer-name-input");
     const userTimerTimeInput = document.getElementById("user-timer-time-input");
     
@@ -312,29 +312,36 @@ document.getElementById("user-timer-add-btn").addEventListener("click", () => {
         return;
     }
 
-    UserTimerTimeInputDate = new Date(userTimerTimeInput.value); // update the GLOBAL VARIABLE
+    UserTimerInputDate = new Date(userTimerTimeInput.value); // update the GLOBAL VARIABLE
     const now = new Date();
-    const diffMs = UserTimerTimeInputDate - now;
+    const diffMs = UserTimerInputDate - now;
     if (diffMs <= 0) {
         alert("Please enter a future date and time.");
         return;
     }
 
+
     UserTimerSetDate = now; // store the time when the user set the timer
     UserTimerTotalMs = diffMs; // store the total duration for progress bar calculation
-    const [dateStr, timeStr] = dateToDisplayStr(UserTimerTimeInputDate);
+    const [dateStr, timeStr] = dateToDisplayStr(UserTimerInputDate);
 
     const userTimerName = document.getElementById("user-timer-name");
     const userTimerTime = document.getElementById("user-timer-time");
     userTimerName.textContent = userTimerNameInput.value;
     userTimerTime.textContent = dateStr + " " + timeStr;    
-    
+
+
+    // store the timer info to cache
+    localStorage.setItem("UserTimerName", userTimerNameInput.value);
+    localStorage.setItem("UserTimerTime", userTimerTimeInput.value);
+    localStorage.setItem("UserTimerTotalMs", UserTimerTotalMs);
+
 });
 
 function updateUserCountdown() {
-    if (!UserTimerTimeInputDate) return;
+    if (!UserTimerInputDate) return;
     const now = new Date();
-    const diffMs = UserTimerTimeInputDate - now;
+    const diffMs = UserTimerInputDate - now;
     if (diffMs <= 0) {
         document.getElementById('user-timer-countdown').textContent = "00:00:00:000";
         return;
@@ -358,5 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateSunriseCountdown, 100);
     setInterval(updateSunsetCountdown, 100);
     setInterval(update4SeasonsCountdown, 100);
-    setInterval(updateUserCountdown, 100);
+    if (UserTimerInputDate){
+        setInterval(updateUserCountdown, 100);
+    }
 });
