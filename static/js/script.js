@@ -6,7 +6,6 @@ let NextSunriseTime = null;
 let NextSunsetTime = null;
 let TheNext4Seasons = null;
 let UserTimerInputDate = null;
-let UserTimerSetDate = null;
 let UserTimerTotalMs = null;
 
 function collectThe8Seasons(the2Years, thisYear, the8Seasons) {
@@ -303,6 +302,41 @@ function updateSunsetCountdown() {
     bar.style.width = percent + "%";
 }
 
+function loadUserTimerFromCache() {
+
+//let UserTimerInputDate = null;
+//let UserTimerTotalMs = null;    
+    const userTimerName = localStorage.getItem("UserTimerName");
+    const userTimerInputDateMs = localStorage.getItem("UserTimerInputDate");
+    const userTimerTotalMs = localStorage.getItem("UserTimerTotalMs");
+    if (userTimerName && userTimerInputDateMs && userTimerTotalMs) {
+        UserTimerInputDate = new Date(parseInt(userTimerInputDateMs));
+        UserTimerTotalMs = parseInt(userTimerTotalMs);
+        const [dateStr, timeStr] = dateToDisplayStr(UserTimerInputDate);
+
+        const userTimerNameElement = document.getElementById("user-timer-name");
+        const userTimerTimeElement = document.getElementById("user-timer-time");
+        userTimerNameElement.textContent = userTimerName;
+        userTimerTimeElement.textContent = dateStr + " " + timeStr;    
+    }
+}
+
+document.getElementById("user-timer-clear-btn").addEventListener("click", () => {
+    UserTimerInputDate = null; // clear the GLOBAL VARIABLE
+    UserTimerTotalMs = null;
+    const userTimerName = document.getElementById("user-timer-name");
+    const userTimerTime = document.getElementById("user-timer-time");
+    userTimerName.textContent = "My Timer";
+    userTimerTime.textContent = "--:--:--.---";
+    document.getElementById('user-timer-countdown').textContent = "--:--:--.---";
+    const bar = document.getElementById('user-timer-progress');
+    bar.style.width = "100%";
+    // clear the timer info from cache
+    localStorage.removeItem("UserTimerName");    
+    localStorage.removeItem("UserTimerInputDate");
+    localStorage.removeItem("UserTimerTotalMs");
+})
+
 document.getElementById("user-timer-set-btn").addEventListener("click", () => {
     const userTimerNameInput = document.getElementById("user-timer-name-input");
     const userTimerTimeInput = document.getElementById("user-timer-time-input");
@@ -321,7 +355,6 @@ document.getElementById("user-timer-set-btn").addEventListener("click", () => {
     }
 
 
-    UserTimerSetDate = now; // store the time when the user set the timer
     UserTimerTotalMs = diffMs; // store the total duration for progress bar calculation
     const [dateStr, timeStr] = dateToDisplayStr(UserTimerInputDate);
 
@@ -330,10 +363,9 @@ document.getElementById("user-timer-set-btn").addEventListener("click", () => {
     userTimerName.textContent = userTimerNameInput.value;
     userTimerTime.textContent = dateStr + " " + timeStr;    
 
-
     // store the timer info to cache
-    localStorage.setItem("UserTimerName", userTimerNameInput.value);
-    localStorage.setItem("UserTimerTime", userTimerTimeInput.value);
+    localStorage.setItem("UserTimerName", userTimerNameInput.value);    
+    localStorage.setItem("UserTimerInputDate", UserTimerInputDate.getTime());
     localStorage.setItem("UserTimerTotalMs", UserTimerTotalMs);
 
 });
@@ -359,6 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCurrentTime();
     updateSunriseSunsetTime();
     updateNext4Seasons();
+    loadUserTimerFromCache();
 
     // update every 100ms
     setInterval(updateCurrentTime, 100);
