@@ -98,7 +98,8 @@ function dateToDisplayStr( date ) {
     const milliseconds = date.getMilliseconds().toString().padStart(3, '0');
 
     const dateStr = year + "-" + month + "-" + day;
-    const timeStr = hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+    const timeStr = hours + ":" + minutes + ":" + seconds;
+    // + "." + milliseconds;
     // console.log(dateStr + " " + timeStr);
     return [dateStr, timeStr];
 }
