@@ -35,144 +35,113 @@
             Taimu Raito
             <img src="./static/images/torch.png" style="height:100px; margin-left:10px; opacity:0.5;">
         </h1>
-        <div class="container my-3">
-            <div class="row my-2 align-items-center ">
-                <div class="col-3 fw-bold"></div>
-                <div class="col-6 fw-bold"></div>
-                <div class="col-3">
-                    <div id="timer-display" class="display-6 fw-bolder text-dark pb-2">--:--:--.---</div>
+        
+        <div class="single-card-container">
+            <div class="card shadow-lg rounded-3 mb-3">
+                <h5 class="card-header">Now</h5>
+                <div class="card-body">
+                    <h5 class="card-title" id="timer-display">--:--:--.---</h5>                    
+                </div>
+            </div>
+        </div>
+        <div class="cards-container">
+            <div class="card shadow-lg rounded-3 mb-3">
+                <h5 class="card-header">Next Sunrise</h5>
+                <div class="card-body">
+                    <h5 class="card-title" id="sunrise-display">--:--:--.---</h5>                    
+                </div>
+                <div class="card-footer">
+                    <h6 class="card-subtitle" id="sunrise-countdown-display">--:--:--.---</h6>
+                    <div class="progress m-1">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%" id="sunrise-countdown-progress"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow-lg rounded-3 mb-3">
+                <h5 class="card-header">Next Sunset</h5>
+                <div class="card-body">
+                    <h5 class="card-title" id="sunset-display">--:--:--.---</h5>                    
+                </div>
+                <div class="card-footer">
+                    <h6 class="card-subtitle" id="sunset-countdown-display">--:--:--.---</h6>
+                    <div class="progress m-1">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%" id="sunset-countdown-progress"></div>
+                    </div>
+                </div>                
+            </div>
+
+            <div class="card shadow-lg rounded-3 mb-3">
+                <h5 class="card-header season-name" id="next-season-name-1">Next Season</h5>
+                <div class="card-body">
+                    <h5 class="card-title season-time" id="next-season-time-1">--:--:--.---</h5>                    
+                </div>
+                <div class="card-footer">
+                    <h6 class="card-subtitle season-countdown" id="next-season-countdown-1">--:--:--.---</h6>
+                    <div class="progress m-1">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info season-countdown-progress" style="width:100%"></div>
+                    </div>
+                </div>                   
+            </div>
+
+            <div class="card shadow-lg rounded-3 mb-3">
+                <h5 class="card-header season-name" id="next-season-name-2">Next Season</h5>
+                <div class="card-body">
+                    <h5 class="card-title season-time" id="next-season-time-2">--:--:--.---</h5>                    
+                </div>
+                <div class="card-footer">
+                    <h6 class="card-subtitle season-countdown" id="next-season-countdown-2">--:--:--.---</h6>
+                    <div class="progress m-1">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info season-countdown-progress" style="width:100%"></div>
+                    </div>
                 </div>
             </div>
 
-            <div class="row m-2 align-items-center ">
-                <div class="col-3 fw-bold display-6">MOMENTS</div>
-                <div class="col-6 fw-bold display-6">COUNTDOWN</div>
-                <div class="col-3 fw-bold display-6">WHEN</div>
-            </div>
-            <div class="card shadow-lg rounded-3 mb-3 bg-primary bg-opacity-10">
-                <div class="row m-2 align-items-center gx-0">
-                    <div class="col-3 display-6 row-bg-banner10">Next Sunrise</div>
-                        <div class="col-6 row-bg-banner07">
-                            <div id="sunrise-countdown-display" class="display-6 fw-bold">--:--:--.---</div>
-                        </div>
-                        <div class="col-3 row-bg-banner07">
-                            <div id="sunrise-display" class="display-6">--:--:--.---</div>
-                        </div>
+            <div class="card shadow-lg rounded-3 mb-3">
+                <h5 class="card-header season-name" id="next-season-name-3">Next Season</h5>
+                <div class="card-body">
+                    <h5 class="card-title season-time" id="next-season-time-3">--:--:--.---</h5>                    
                 </div>
-
-                <div class="progress m-2">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%" id="sunrise-countdown-progress"></div>
+                <div class="card-footer">
+                    <h6 class="card-subtitle season-countdown" id="next-season-countdown-3">--:--:--.---</h6>
+                    <div class="progress m-1">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info season-countdown-progress" style="width:100%"></div>
+                    </div>
                 </div>
             </div>
-            <div class="card shadow-lg rounded-3 mb-3 bg-primary bg-opacity-10">
-                <div class="row m-2 align-items-center ">
-                    <div class="col-3 display-6 row-bg-banner17">Next Sunset</div>
-                    <div class="col-6 fw-bold row-bg-banner07">
-                        <div class="display-6 fw-bold"  id="sunset-countdown-display">--:--:--.---</div>
-                    </div>
-                    <div class="col-3 row-bg-banner07">
-                        <div id="sunset-display" class="display-6">--:--:--.---</div>
-                    </div>
+            <div class="card shadow-lg rounded-3 mb-3">
+                <h5 class="card-header season-name" id="next-season-name-4">Next Season</h5>
+                <div class="card-body">
+                    <h5 class="card-title season-time" id="next-season-time-4">--:--:--.---</h5>
                 </div>
-                <div class="progress m-2">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%" id="sunset-countdown-progress"></div>
-                </div>
-            </div>
-            <div class="card shadow-lg rounded-3 mb-3 bg-secondary bg-opacity-10">
-                <div class="row m-2 align-items-center ">
-                    <div class="col-3 display-6 row-bg-banner18">
-                        <span class="season-name" id="next-season-name-1">Next Season: </span>
+                <div class="card-footer">
+                    <h6 class="card-subtitle season-countdown" id="next-season-countdown-4">--:--:--.---</h6>
+                    <div class="progress m-1">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info season-countdown-progress" style="width:100%"></div>
                     </div>
-                    <div class="col-6 fw-bold row-bg-banner07">
-                        <div class="display-6 fw-bold season-countdown" id="next-season-countdown-1">--:--:--.---</div>
-                    </div>
-                    <div class="col-3 row-bg-banner07">
-                        <div class="fs-4 season-time" id="next-season-time-1">--:--:--.---</div>
-                    </div>
-                </div>
-                <div class="progress m-2">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info season-countdown-progress" style="width:100%"></div>
                 </div>
             </div>            
+        </div>
 
-            <div class="card shadow-lg rounded-3 mb-3 bg-secondary bg-opacity-10">
-                <div class="row m-2 align-items-center">
-                    <div class="col-3 display-6  row-bg-banner12">
-                        <span class="season-name" id="next-season-name-2">Next Season: </span>
-                    </div>
-                    <div class="col-6 fw-bold row-bg-banner07">
-                        <div class="display-6 fw-bold season-countdown" id="next-season-countdown-2">--:--:--.---</div>
-                    </div>
-                    <div class="col-3  row-bg-banner07">
-                        <div class="fs-4 season-time" id="next-season-time-2">--:--:--.---</div>
+        <div class="single-card-container">
+            <div class="card shadow-lg rounded-3 mb-3">
+                <h5 class="card-header" id="user-timer-name">My Timer</h5>
+                <div class="card-body">
+                    <h5 class="card-title" id="user-timer-time">--:--:--.---</h5>
+                </div>
+                <div class="card-footer">
+                    <h6 class="card-subtitle" id="user-timer-countdown">--:--:--.---</h6>
+                    <div class="progress m-1">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success season-countdown-progress" style="width:0%" id="user-timer-progress"></div>
                     </div>
                 </div>
-                <div class="progress m-2">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info season-countdown-progress" style="width:100%"></div>
+                <div class="card-body">
+                    <input type="text" id="user-timer-name-input" class="form-control form-control-sm w-auto" autocomplete="off" placeholder="Timer Name">
+                    <input type="datetime-local" id="user-timer-time-input" class="form-control form-control-sm w-auto" required placeholder="HH:MM:SS">
+                    <button type="button" class="btn btn-light btn-sm" id="user-timer-set-btn">Set</button>
+                    <button type="button" class="btn btn-light btn-sm" id="user-timer-clear-btn">Clear</button>
                 </div>
             </div>
-
-            <div class="card shadow-lg rounded-3 mb-3 bg-secondary bg-opacity-10">
-                <div class="row m-2 align-items-center">
-                    <div class="col-3 display-6  row-bg-banner01">
-                        <span class="season-name" id="next-season-name-3">Next Season: </span>
-                    </div>
-                    <div class="col-6 fw-bold row-bg-banner07">
-                        <div class="display-6 fw-bold season-countdown" id="next-season-countdown-3">--:--:--.---</div>
-                    </div>
-                    <div class="col-3 row-bg-banner07">
-                        <div class="fs-4 season-time" id="next-season-time-3">--:--:--.---</div>
-                    </div>
-                </div>
-                <div class="progress m-2">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info season-countdown-progress" style="width:100%"></div>
-                </div>
-            </div>
-
-            <div class="card shadow-lg rounded-3 mb-3 bg-secondary bg-opacity-10">
-                <div class="row m-2 align-items-center">
-                    <div class="col-3 display-6 row-bg-banner04">
-                        <span class="season-name" id="next-season-name-4">Next Season: </span>
-                    </div>
-                    <div class="col-6 fw-bold row-bg-banner07">
-                        <div class="display-6 fw-bold season-countdown" id="next-season-countdown-4">--:--:--.---</div>
-                    </div>
-                    <div class="col-3 row-bg-banner07">
-                        <div class="fs-4 season-time" id="next-season-time-4">--:--:--.---</div>
-                    </div>
-                </div>
-                <div class="progress m-2">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info season-countdown-progress" style="width:100%"></div>
-                </div>
-            </div>
-
-            <div class="card shadow-lg rounded-3 mb-3 bg-secondary bg-opacity-10">
-                <div class="row m-2 align-items-center">
-                    <div class="col justify-content-start d-flex">
-                        <form class="d-flex gap-2">
-                            <input type="text" id="user-timer-name-input" class="form-control form-control-sm w-auto" autocomplete="off" placeholder="Timer Name">
-                            <input type="datetime-local" id="user-timer-time-input" class="form-control form-control-sm w-auto" required placeholder="HH:MM:SS">
-                            <button type="button" class="btn btn-light btn-sm" id="user-timer-set-btn">Set</button>
-                            <button type="button" class="btn btn-light btn-sm" id="user-timer-clear-btn">Clear</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="row m-2 align-items-center">
-                    <div class="col-3 display-6 bg-light">
-                        <span id="user-timer-name">My Timer</span>
-                    </div>
-                    <div class="col-6 fw-bold row-bg-banner07">
-                        <div class="display-6 fw-bold" id="user-timer-countdown">--:--:--.---</div>
-                    </div>
-                    <div class="col-3 row-bg-banner07">
-                        <div class="fs-4" id="user-timer-time">--:--:--.---</div>
-                    </div>
-                </div>
-                <div class="progress m-2">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning-subtle" id="user-timer-progress" style="width:100%"></div>
-                </div>
-            </div>
-        </div>        
+        </div>
     </main>
     <footer class="shadow-sm my-3 py-3">
         <div class="container text-center">

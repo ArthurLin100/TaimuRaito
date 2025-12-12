@@ -122,7 +122,7 @@ function updateNext4Seasons() {
     seasonTimeElements.forEach((element, index) => { // update season time
         const season = TheNext4Seasons[index];
         const [dateStr, timeStr] = dateToDisplayStr(season);
-        element.textContent = dateStr + " " + timeStr;
+        element.innerHTML = "📆 " +dateStr + "<br>🕰️ " + timeStr;
     });
 
     //console.log("end of updateNext4Seasons");
@@ -137,7 +137,7 @@ function updateCurrentTime() {
 
     // format the time string
     const [dateStr, timeStr] = dateToDisplayStr(now);
-    timerDisplay.textContent = timeStr;
+    timerDisplay.textContent = "🕰️ " + timeStr;
 
 }
 
@@ -150,8 +150,8 @@ async function updateSunriseSunsetTime() {
 
     const [sunriseDateStr, sunriseTimeStr] = dateToDisplayStr(NextSunriseTime);
     const [sunsetDateStr, sunsetTimeStr] = dateToDisplayStr(NextSunsetTime);
-    sunriseDisplay.textContent = sunriseTimeStr;
-    sunsetDisplay.textContent = sunsetTimeStr;
+    sunriseDisplay.textContent = "🕰️ " + sunriseTimeStr;
+    sunsetDisplay.textContent = "🕰️ " + sunsetTimeStr;
 }
 
 
@@ -219,7 +219,7 @@ function dateDeltaToCountdownStr( diffMs, within24HoursFlag ) {
 
         const countdownStr =  hours.toString().padStart(2, '0') + ":" +
                             minutes.toString().padStart(2, '0') + ":" +
-                            seconds.toString().padStart(2, '0') + ":" +
+                            seconds.toString().padStart(2, '0') + "." +
                             milliseconds.toString().padStart(3, '0');
         return countdownStr;
     }
@@ -247,7 +247,7 @@ function update4SeasonsCountdown() {
             return;
         }
         const countdownStr = dateDeltaToCountdownStr(diffMs, 0);
-        element.textContent = countdownStr;
+        element.textContent = "⌛" + countdownStr;
     });
 
     //update progress bar
@@ -273,7 +273,7 @@ function updateSunriseCountdown() {
     }
 
     const countdownStr = dateDeltaToCountdownStr(diffMs, 1);
-    document.getElementById('sunrise-countdown-display').textContent = countdownStr;
+    document.getElementById('sunrise-countdown-display').textContent = "⌛" + countdownStr;
 
     //update progress bar
     const bar = document.getElementById('sunrise-countdown-progress');
@@ -294,7 +294,7 @@ function updateSunsetCountdown() {
     }
 
     const countdownStr = dateDeltaToCountdownStr(diffMs, 1);
-    document.getElementById('sunset-countdown-display').textContent = countdownStr;
+    document.getElementById('sunset-countdown-display').textContent = "⌛" + countdownStr;
 
     //update progress bar
     const bar = document.getElementById('sunset-countdown-progress');
@@ -317,7 +317,7 @@ function loadUserTimerFromCache() {
         const userTimerNameElement = document.getElementById("user-timer-name");
         const userTimerTimeElement = document.getElementById("user-timer-time");
         userTimerNameElement.textContent = userTimerName;
-        userTimerTimeElement.textContent = dateStr + " " + timeStr;    
+        userTimerTimeElement.innerHTML = "📆 " +dateStr + "<br>🕰️ " + timeStr;        
     }
 }
 
@@ -330,7 +330,10 @@ document.getElementById("user-timer-clear-btn").addEventListener("click", () => 
     userTimerTime.textContent = "--:--:--.---";
     document.getElementById('user-timer-countdown').textContent = "--:--:--.---";
     const bar = document.getElementById('user-timer-progress');
-    bar.style.width = "100%";
+    bar.style.width = "0%";
+    // clear the input fields
+    document.getElementById("user-timer-name-input").value = "";
+    document.getElementById("user-timer-time-input").value = "";
     // clear the timer info from cache
     localStorage.removeItem("UserTimerName");    
     localStorage.removeItem("UserTimerInputDate");
@@ -342,7 +345,7 @@ document.getElementById("user-timer-set-btn").addEventListener("click", () => {
     const userTimerTimeInput = document.getElementById("user-timer-time-input");
     
     if (!userTimerTimeInput.value) {
-        alert("Please enter and time.");
+        alert("Please enter a time.");
         return;
     }
 
@@ -360,7 +363,7 @@ document.getElementById("user-timer-set-btn").addEventListener("click", () => {
 
     const userTimerName = document.getElementById("user-timer-name");
     const userTimerTime = document.getElementById("user-timer-time");
-    userTimerTime.textContent = dateStr + " " + timeStr;
+    userTimerTime.innerHTML = "📆 " +dateStr + "<br>🕰️ " + timeStr;
     if (userTimerNameInput.value){
         userTimerName.textContent = userTimerNameInput.value;
         localStorage.setItem("UserTimerName", userTimerNameInput.value); // store the timer info to cache
@@ -381,7 +384,7 @@ function updateUserCountdown() {
         return;
     }
     const countdownStr = dateDeltaToCountdownStr(diffMs, 0);
-    document.getElementById('user-timer-countdown').textContent = countdownStr;
+    document.getElementById('user-timer-countdown').textContent = "⌛" + countdownStr;
 
     //update progress bar
     const bar = document.getElementById('user-timer-progress');

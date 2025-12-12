@@ -95,4 +95,18 @@ body {
     1px 1px 0 #AAAAAA;    /* 右下 */
 }
 
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+}
 
+.single-card-container {
+    max-width: 400px;
+    margin: 0 auto 1rem auto;
+    padding: 0 1rem;
+}
