@@ -1,12 +1,34 @@
 /* static/css/style.css */
 
 body {
-    background-image: url('../images/background.png');
+    background-image: url('../images/background.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
 
+.page-title {
+    position: relative;
+    display: inline-block;
+    z-index: 0;
+}
+
+.page-title::after {
+    content: "";
+    position: absolute;    
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;   /* Logo 大小 */
+    background-image: url('../images/torch.png');
+    background-position: center center;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    opacity: 0.4;   /* 半透明 */
+    pointer-events: none; /* 避免阻擋滑鼠 */
+    z-index: -1;
+}
 
 
 .row-bg-banner01 {
