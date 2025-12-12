@@ -138,7 +138,7 @@ function updateCurrentTime() {
 
     // format the time string
     const [dateStr, timeStr] = dateToDisplayStr(now);
-    timerDisplay.textContent = "🕰️ " + timeStr;
+    timerDisplay.textContent = "🕰️ " + timeStr + "." + now.getMilliseconds().toString().padStart(3, '0');
 
 }
 
