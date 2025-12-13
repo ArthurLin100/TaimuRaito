@@ -7,93 +7,6 @@ body {
     background-attachment: fixed;
 }
 
-.page-title {
-    position: relative;
-    display: inline-block;
-    z-index: 0;
-}
-
-.page-title::after {
-    content: "";
-    position: absolute;    
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;   /* Logo 大小 */
-    background-image: url('../images/torch.png');
-    background-position: center center;
-    background-size: auto 100%;
-    background-repeat: no-repeat;
-    opacity: 0.4;   /* 半透明 */
-    pointer-events: none; /* 避免阻擋滑鼠 */
-    z-index: -1;
-}
-
-
-.row-bg-banner01 {
-    position: relative;
-    background-image: url("../images/banner01.png");
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.row-bg-banner04 {
-    position: relative;
-    background-image: url("../images/banner04.png");
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.row-bg-banner07 {
-    position: relative;
-    background-image: url("../images/banner07.png");
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.row-bg-banner10 {
-    position: relative;
-    background-image: url("../images/banner10.png");
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.row-bg-banner12 {
-    position: relative;
-    background-image: url("../images/banner12.png");
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.row-bg-banner17 {
-    position: relative;
-    background-image: url("../images/banner17.png");
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.row-bg-banner18 {
-    position: relative;
-    background-image: url("../images/banner18.png");
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.text-outline-shadow {
-  text-shadow:
-    -1px -1px 0 #AAAAAA,  /* 左上 */
-    1px -1px 0 #AAAAAA,   /* 右上 */
-    -1px 1px 0 #AAAAAA,   /* 左下 */
-    1px 1px 0 #AAAAAA;    /* 右下 */
-}
 
 .cards-container {
   display: grid;
@@ -109,4 +22,12 @@ body {
     max-width: 400px;
     margin: 0 auto 1rem auto;
     padding: 0 1rem;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.2) !important; /* 半透明白色 */
+  backdrop-filter: blur(10px);           /* 背景模糊 */
+  -webkit-backdrop-filter: blur(10px);   /* Safari 支援 */
+  border: 2px solid rgba(255, 255, 255, 0.3); /* 半透明邊框 */
+  /* color: #fff;                            文字顏色，讓對比明顯 */
 }
