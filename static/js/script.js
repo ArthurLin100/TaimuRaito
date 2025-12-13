@@ -7,6 +7,7 @@ let NextSunsetTime = null;
 let TheNext4Seasons = null;
 let UserTimerInputDate = null;
 let UserTimerTotalMs = null;
+let UserPosition = null; // Store user's position globally
 
 function collectThe8Seasons(the2Years, thisYear, the8Seasons) {
     for (const event of the2Years) {
@@ -163,11 +164,71 @@ function getPosition() {
     });
 }
 
-async function getNextSunriseSunset() {
+async function reverseGeocode(lat, lon) {
+    try {
+        const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&addressdetails=1&accept-language=en`
+        );
 
-    const pos = await getPosition();
-    const lat = pos.coords.latitude;
-    const lon = pos.coords.longitude;
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Reverse geocoding error:', error);
+        throw error;
+    }
+}
+
+async function getUserLocationString() {
+    if (!UserPosition) {
+        return "Unknown Location";
+    }
+    const lat = UserPosition.coords.latitude;
+    const lon = UserPosition.coords.longitude;
+    
+    try {
+        const data = await reverseGeocode(lat, lon);
+        const address = data.address;
+        const city = address.city || address.town || address.village || address.hamlet || "";
+        const state = address.state || "";
+        const country = address.country || "";
+        let locationString = "";
+        if (city) locationString += city;
+        if (state) locationString += (locationString ? ", " : "") + state;
+        if (country) locationString += (locationString ? ", " : "") + country;
+        return locationString || "Unknown Location";
+    } catch (error) {
+        return "Unknown Location";
+    }
+}
+
+async function updateLocationDisplay() {
+    const sunriseLocation = document.getElementById('sunrise-location');
+    const sunsetLocation = document.getElementById('sunset-location');
+    
+    if (!sunriseLocation || !sunsetLocation) return;
+    
+    try {
+        const locationString = await getUserLocationString();
+        sunriseLocation.textContent = locationString;
+        sunsetLocation.textContent = locationString;
+    } catch (error) {
+        console.error('Error updating location display:', error);
+        sunriseLocation.textContent = "Location unavailable";
+        sunsetLocation.textContent = "Location unavailable";
+    }
+}
+
+async function getNextSunriseSunset() {
+    if (!UserPosition) {
+        throw new Error('User position not available');
+    }
+
+    const lat = UserPosition.coords.latitude;
+    const lon = UserPosition.coords.longitude;
 
     // use setDate to get tmr
     const d = new Date();
@@ -393,7 +454,17 @@ function updateUserCountdown() {
     bar.style.width = percent + "%";
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // Get user position first
+    try {
+        UserPosition = await getPosition();
+        // Update location display after getting position
+        updateLocationDisplay();
+    } catch (error) {
+        console.error('Failed to get user position:', error);
+        // Continue with other initialization even if position fails
+    }
+
     updateCurrentTime();
     updateSunriseSunsetTime();
     updateNext4Seasons();

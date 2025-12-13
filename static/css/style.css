@@ -20,14 +20,14 @@ body {
 
 .single-card-container {
     max-width: 400px;
-    margin: 0 auto 1rem auto;
+    margin: 2rem auto 2rem auto;
     padding: 0 1rem;
 }
 
 .glass-card {
   background: rgba(255, 255, 255, 0.2) !important; /* 半透明白色 */
-  backdrop-filter: blur(10px);           /* 背景模糊 */
-  -webkit-backdrop-filter: blur(10px);   /* Safari 支援 */
-  border: 2px solid rgba(255, 255, 255, 0.3); /* 半透明邊框 */
+  backdrop-filter: blur(5px);           /* 背景模糊 */
+  -webkit-backdrop-filter: blur(5px);   /* Safari 支援 */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* 半透明邊框 */
   /* color: #fff;                            文字顏色，讓對比明顯 */
 }
