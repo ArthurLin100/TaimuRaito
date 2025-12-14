@@ -137,10 +137,12 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <input type="text" id="user-timer-name-input" class="form-control form-control-sm w-auto bg-light" autocomplete="off" placeholder="Title">
-                    <input type="datetime-local" id="user-timer-time-input" class="form-control form-control-sm w-auto bg-light" required placeholder="HH:MM:SS">
-                    <button type="button" class="btn btn-light btn-sm" id="user-timer-set-btn">Set</button>
-                    <button type="button" class="btn btn-light btn-sm" id="user-timer-clear-btn">Clear</button>
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                        <input type="text" id="user-timer-name-input" class="form-control form-control-sm w-auto bg-light" placeholder="Title">
+                        <input type="datetime-local" id="user-timer-time-input" class="form-control form-control-sm w-auto bg-light" required placeholder="HH:MM:SS">
+                        <button type="button" class="btn btn-outline-dark btn-sm" id="user-timer-set-btn">Set</button>
+                        <button type="button" class="btn btn-outline-dark btn-sm" id="user-timer-clear-btn">Clear</button>                        
+                    </div>
                 </div>
             </div>
         </div>
