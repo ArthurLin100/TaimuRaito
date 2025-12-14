@@ -390,7 +390,7 @@ document.getElementById("user-timer-clear-btn").addEventListener("click", () => 
     UserTimerTotalMs = null;
     const userTimerName = document.getElementById("user-timer-name");
     const userTimerTime = document.getElementById("user-timer-time");
-    userTimerName.textContent = "My Timer";
+    userTimerName.textContent = "My Countdown";
     userTimerTime.textContent = "--:--:--.---";
     document.getElementById('user-timer-countdown').textContent = "--:--:--.---";
     const bar = document.getElementById('user-timer-progress');
@@ -430,7 +430,7 @@ document.getElementById("user-timer-set-btn").addEventListener("click", () => {
     userTimerTime.innerHTML = "📆 " +dateStr + "<br>🕰️ " + timeStr;
     
     // 總是設定和儲存名稱，即使是空的
-    const timerName = userTimerNameInput.value || "My Timer";
+    const timerName = userTimerNameInput.value || "My Countdown";
     userTimerName.textContent = timerName;
     localStorage.setItem("UserTimerName", timerName); // 總是儲存名稱
 
