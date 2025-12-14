@@ -371,14 +371,16 @@ function loadUserTimerFromCache() {
     const userTimerName = localStorage.getItem("UserTimerName");
     const userTimerInputDateMs = localStorage.getItem("UserTimerInputDate");
     const userTimerTotalMs = localStorage.getItem("UserTimerTotalMs");
-    if (userTimerName && userTimerInputDateMs && userTimerTotalMs) {
+    if (userTimerInputDateMs && userTimerTotalMs) { 
         UserTimerInputDate = new Date(parseInt(userTimerInputDateMs));
         UserTimerTotalMs = parseInt(userTimerTotalMs);
         const [dateStr, timeStr] = dateToDisplayStr(UserTimerInputDate);
 
         const userTimerNameElement = document.getElementById("user-timer-name");
         const userTimerTimeElement = document.getElementById("user-timer-time");
-        userTimerNameElement.textContent = userTimerName;
+        
+        // 設定名稱，如果沒有儲存的名稱就用預設值
+        userTimerNameElement.textContent = userTimerName || "My Countdown";
         userTimerTimeElement.innerHTML = "📆 " +dateStr + "<br>🕰️ " + timeStr;        
     }
 }
@@ -426,10 +428,11 @@ document.getElementById("user-timer-set-btn").addEventListener("click", () => {
     const userTimerName = document.getElementById("user-timer-name");
     const userTimerTime = document.getElementById("user-timer-time");
     userTimerTime.innerHTML = "📆 " +dateStr + "<br>🕰️ " + timeStr;
-    if (userTimerNameInput.value){
-        userTimerName.textContent = userTimerNameInput.value;
-        localStorage.setItem("UserTimerName", userTimerNameInput.value); // store the timer info to cache
-    }    
+    
+    // 總是設定和儲存名稱，即使是空的
+    const timerName = userTimerNameInput.value || "My Timer";
+    userTimerName.textContent = timerName;
+    localStorage.setItem("UserTimerName", timerName); // 總是儲存名稱
 
     // store the timer info to cache
     localStorage.setItem("UserTimerInputDate", UserTimerInputDate.getTime());
