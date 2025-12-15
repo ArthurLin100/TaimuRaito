@@ -144,9 +144,10 @@ function updateCurrentTime() {
 }
 
 async function updateSunriseSunsetTime() {
+    const date = new Date();
     const sunriseDisplay = document.getElementById('sunrise-display');
     const sunsetDisplay = document.getElementById('sunset-display');
-    const [sunriseUTC, sunsetUTC] = await getNextSunriseSunset();
+    const [sunriseUTC, sunsetUTC] = await getNextSunriseSunset(date);
     NextSunriseTime = sunriseUTC; //UPDATE the GLOBAL VARIABLE
     NextSunsetTime = sunsetUTC; //UPDATE the GLOBAL VARIABLE
 
@@ -216,7 +217,7 @@ async function getUserLocationString() {
     } catch (error) {
         //display lat lon if reverse geocoding fails
         console.error('Error getting user location string:', error);
-        const latLonStr = formatLatLon(lat, lon);
+        const latLonStr = formatLatLon(lat, lon); //display lat lon instead
         if (latLonStr) {
             return latLonStr;
         }        
@@ -241,7 +242,8 @@ async function updateLocationDisplay() {
     }
 }
 
-async function getNextSunriseSunset() {
+async function getNextSunriseSunset( date, recursiveCall = false ) {
+    console.log("getNextSunriseSunset called for date:", date.toISOString());
     if (!UserPosition) {
         throw new Error('User position not available');
     }
@@ -249,13 +251,7 @@ async function getNextSunriseSunset() {
     const lat = UserPosition.coords.latitude;
     const lon = UserPosition.coords.longitude;
 
-    // use setDate to get tmr
-    const d = new Date();
-    d.setDate(d.getDate() + 1);
-    //TODO: here i am being lazy, that always calulate the NEXT DAY's sunrise. IDEALLY,
-    //      if a user is checking at for example, 01:00, then the next sunrise should happen within the SAME DATE
-
-    const dateStr = d.toISOString().split('T')[0];
+    const dateStr = date.toISOString().split('T')[0];
 
     const url = `https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lon}&date=${dateStr}&formatted=0`;
 
@@ -268,11 +264,27 @@ async function getNextSunriseSunset() {
         throw new Error('API returned unexpected data: ' + JSON.stringify(data));
       }
 
-      const sunriseUTC = new Date(data.results.sunrise);
-      const sunsetUTC = new Date(data.results.sunset);
+      let sunriseUTC = new Date(data.results.sunrise);
+      let sunsetUTC = new Date(data.results.sunset);
       if (isNaN(sunriseUTC) || isNaN(sunsetUTC)) throw new Error('Invalid sunrise/sunset time from API');
 
-
+      if ((sunriseUTC < date || sunsetUTC < date) && recursiveCall === false) {
+        console.log("Sunrise or sunset already passed for the date:", dateStr);
+        // If the calculated sunrise or sunset is before the current date/time, fetch for the next day
+        const nextDate = new Date(date);
+        nextDate.setDate(nextDate.getDate() + 1);
+        let [sunriseUTC2, sunsetUTC2] = await getNextSunriseSunset(nextDate, true); // recursive call for next day
+        
+        if (sunriseUTC < date) { // if today's sunrise already passed, use tmr's
+          sunriseUTC = sunriseUTC2;
+          console.log("Using next day's sunrise:", sunriseUTC.toISOString());
+        }
+        if (sunsetUTC < date) { // if today's sunset already passed, use tmr's
+          sunsetUTC = sunsetUTC2;
+          console.log("Using next day's sunset:", sunsetUTC.toISOString());
+        }
+      }
+      
       return [sunriseUTC, sunsetUTC];
       /*
       return {
