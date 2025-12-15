@@ -156,6 +156,19 @@ async function updateSunriseSunsetTime() {
     sunsetDisplay.textContent = "🕰️ " + sunsetTimeStr;
 }
 
+function formatLatLon(lat, lon, decimals = 4) {
+  if (typeof lat !== "number" || typeof lon !== "number") {
+    return "";
+  }
+
+  const latDir = lat >= 0 ? "N" : "S";
+  const lonDir = lon >= 0 ? "E" : "W";
+
+  const latAbs = Math.abs(lat).toFixed(decimals);
+  const lonAbs = Math.abs(lon).toFixed(decimals);
+
+  return `${latAbs}° ${latDir}, ${lonAbs}° ${lonDir}`;
+}
 
 // returning Promise so we can use await in async function getNextSunrise()
 function getPosition() {
@@ -201,6 +214,12 @@ async function getUserLocationString() {
         if (country) locationString += (locationString ? ", " : "") + country;
         return locationString || "Unknown Location";
     } catch (error) {
+        //display lat lon if reverse geocoding fails
+        console.error('Error getting user location string:', error);
+        const latLonStr = formatLatLon(lat, lon);
+        if (latLonStr) {
+            return latLonStr;
+        }        
         return "Unknown Location";
     }
 }
