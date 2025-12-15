@@ -32,9 +32,9 @@
 
     <main class="shadow-sm my-3 py-3 flex-grow-1 text-center">        
         <h1 class="display-4 fw-bold shadow-sm">
-            <img src="./static/images/torch.png" style="height:100px; margin-right:10px; opacity:0.7;">
+            <img src="./static/images/torch2.png" style="height:100px; margin-right:10px; opacity:1.0;">
             TAIMU RAITO
-            <img src="./static/images/torch.png" style="height:100px; margin-left:10px; opacity:0.7;">
+            <img src="./static/images/torch2.png" style="height:100px; margin-left:10px; opacity:1.0;">
         </h1>
         
         <div class="single-card-container">
@@ -153,10 +153,41 @@
         <div class="container text-center small text-muted">
             &copy; 2025 Arthur Lin · All rights reserved · 
             <a href="https://github.com/ArthurLin100/TaimuRaito" class="text-reset" target="_blank" rel="noopener">View source on GitHub</a> · 
-            <a href="https://forms.gle/xbDzzAdFczEtFCLB8" class="text-reset" target="_blank" rel="noopener">Send feedback</a> ·  
+            <a href="https://forms.gle/xbDzzAdFczEtFCLB8" class="text-reset" target="_blank" rel="noopener">Send feedback</a> · 
+            <a href="#" class="text-muted" data-bs-toggle="modal" data-bs-target="#aboutModal">About</a> · 
             <a href="https://www.buymeacoffee.com/arthurlin100"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=arthurlin100&button_colour=abc1ce&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" style="height: 30px;"/></a>
         </div>
     </footer>
+
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content rounded-3">
+                <div class="modal-header py-2">
+                    <h6 class="modal-title">About</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body small text-muted my-2">
+                    <p class="mb-2">
+                        <strong>Sunrise & Sunset:</strong><br>
+                        Data from <a href="https://sunrise-sunset.org/" target="_blank" class="text-muted text-decoration-none">sunrise-sunset.org</a>
+                    </p>
+                    <p class="mb-2">
+                        <strong>Seasons (Equinoxes & Solstices):</strong><br>
+                        Data from <a href="https://aa.usno.navy.mil/" target="_blank" class="text-muted text-decoration-none">usno.navy.mil</a>
+                    </p>
+                    <p class="mb-0">
+                        <strong>Season Definitions:</strong><br>
+                        • Spring: March Equinox<br>
+                        • Summer: June Solstice<br>
+                        • Autumn: September Equinox<br>
+                        • Winter: December Solstice
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="module" src="./static/js/script.js"></script>
 </body>
 
