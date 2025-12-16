@@ -84,8 +84,7 @@ function getNext4Seasons() {
         }
         cnt++;
     }
-    TheNext4Seasons = the8Seasons.slice(cnt, cnt+4);
-    //console.table(TheNext4Seasons);
+    TheNext4Seasons = the8Seasons.slice(cnt, cnt+4);    
 }
 
 // input: Date object
@@ -109,8 +108,7 @@ function updateNext4Seasons() {
     const seasonMap = {"03":"Spring", "06":"Summer", "09":"Autumn", "12":"Winter"};
     let seasonString = "";
     getNext4Seasons(); // update TheNext4Seasons
-    if (!TheNext4Seasons) return;
-    //console.table(TheNext4Seasons);
+    if (!TheNext4Seasons) return;    
 
     const seasonNameElements = document.querySelectorAll('.season-name');
     seasonNameElements.forEach((element, index) => { // update season name
@@ -126,8 +124,7 @@ function updateNext4Seasons() {
         const [dateStr, timeStr] = dateToDisplayStr(season);
         element.innerHTML = "📆 " +dateStr + "<br>🕰️ " + timeStr;
     });
-
-    //console.log("end of updateNext4Seasons");
+    
 }
 
 // Update Current Time
@@ -242,8 +239,7 @@ async function updateLocationDisplay() {
     }
 }
 
-async function getNextSunriseSunset( date, recursiveCall = false ) {
-    console.log("getNextSunriseSunset called for date:", date.toISOString());
+async function getNextSunriseSunset( date, recursiveCall = false ) {    
     if (!UserPosition) {
         throw new Error('User position not available');
     }
@@ -269,7 +265,7 @@ async function getNextSunriseSunset( date, recursiveCall = false ) {
       if (isNaN(sunriseUTC) || isNaN(sunsetUTC)) throw new Error('Invalid sunrise/sunset time from API');
 
       if ((sunriseUTC < date || sunsetUTC < date) && recursiveCall === false) {
-        console.log("Sunrise or sunset already passed for the date:", dateStr);
+        //  console.log("Sunrise or sunset already passed for the date:", dateStr);
         // If the calculated sunrise or sunset is before the current date/time, fetch for the next day
         const nextDate = new Date(date);
         nextDate.setDate(nextDate.getDate() + 1);
@@ -277,11 +273,11 @@ async function getNextSunriseSunset( date, recursiveCall = false ) {
         
         if (sunriseUTC < date) { // if today's sunrise already passed, use tmr's
           sunriseUTC = sunriseUTC2;
-          console.log("Using next day's sunrise:", sunriseUTC.toISOString());
+        //   console.log("Using next day's sunrise:", sunriseUTC.toISOString());
         }
         if (sunsetUTC < date) { // if today's sunset already passed, use tmr's
           sunsetUTC = sunsetUTC2;
-          console.log("Using next day's sunset:", sunsetUTC.toISOString());
+        //   console.log("Using next day's sunset:", sunsetUTC.toISOString());
         }
       }
       
