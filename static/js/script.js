@@ -22,8 +22,8 @@ let intervalIds = {
 const updateFreqLabel = document.querySelector('label[for="updateFreqRange"]');
 const rangeToFreqMap = [
     { "freq": 100, "label": "100 ms ⚡" },   // 0
-    { "freq": 1000, "label": "1 second 🐢" },    // 1
-    { "freq": 60000, "label": "1 minute 🐇" },   // 2
+    { "freq": 1000, "label": "1 second 🐇" },    // 1
+    { "freq": 60000, "label": "1 minute 🐢" },   // 2
     { "freq": 3600000, "label": "1 hour 🦥" }  // 3   
     ];
 
@@ -284,7 +284,6 @@ async function getNextSunriseSunset( date, recursiveCall = false ) {
       if (isNaN(sunriseUTC) || isNaN(sunsetUTC)) throw new Error('Invalid sunrise/sunset time from API');
 
       if ((sunriseUTC < date || sunsetUTC < date) && recursiveCall === false) {
-        //  console.log("Sunrise or sunset already passed for the date:", dateStr);
         // If the calculated sunrise or sunset is before the current date/time, fetch for the next day
         const nextDate = new Date(date);
         nextDate.setDate(nextDate.getDate() + 1);
@@ -292,22 +291,14 @@ async function getNextSunriseSunset( date, recursiveCall = false ) {
         
         if (sunriseUTC < date) { // if today's sunrise already passed, use tmr's
           sunriseUTC = sunriseUTC2;
-        //   console.log("Using next day's sunrise:", sunriseUTC.toISOString());
         }
         if (sunsetUTC < date) { // if today's sunset already passed, use tmr's
           sunsetUTC = sunsetUTC2;
-        //   console.log("Using next day's sunset:", sunsetUTC.toISOString());
         }
       }
       
       return [sunriseUTC, sunsetUTC];
-      /*
-      return {
-        date: dateStr,
-        sunriseUTC: sunriseUTC.toISOString(),
-        sunriseLocal: sunriseUTC.toLocaleString()
-      };
-      */
+
     } catch (err) {
       console.error('getNextSunriseSunset error:', err);
       throw err;
