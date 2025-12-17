@@ -8,6 +8,25 @@ let TheNext4Seasons = null;
 let UserTimerInputDate = null;
 let UserTimerTotalMs = null;
 let UserPosition = null; // Store user's position globally
+let UpdateFrequencyMs = 100; // default to 100 ms
+
+// Store interval IDs for updating
+let intervalIds = {
+    currentTime: null,
+    sunriseCountdown: null,
+    sunsetCountdown: null,
+    seasonsCountdown: null,
+    userCountdown: null
+};
+
+const updateFreqLabel = document.querySelector('label[for="updateFreqRange"]');
+const rangeToFreqMap = [
+    { "freq": 100, "label": "100 ms ⚡" },   // 0
+    { "freq": 1000, "label": "1 second 🐢" },    // 1
+    { "freq": 60000, "label": "1 minute 🐇" },   // 2
+    { "freq": 3600000, "label": "1 hour 🦥" }  // 3   
+    ];
+
 
 function collectThe8Seasons(the2Years, thisYear, the8Seasons) {
     for (const event of the2Years) {
@@ -456,10 +475,10 @@ document.getElementById("user-timer-set-btn").addEventListener("click", () => {
     const userTimerTime = document.getElementById("user-timer-time");
     userTimerTime.innerHTML = "📆 " +dateStr + "<br>🕰️ " + timeStr;
     
-    // 總是設定和儲存名稱，即使是空的
+    // always update the name
     const timerName = userTimerNameInput.value || "My Countdown";
     userTimerName.textContent = timerName;
-    localStorage.setItem("UserTimerName", timerName); // 總是儲存名稱
+    localStorage.setItem("UserTimerName", timerName); // always save the name
 
     // store the timer info to cache
     localStorage.setItem("UserTimerInputDate", UserTimerInputDate.getTime());
@@ -484,6 +503,48 @@ function updateUserCountdown() {
     bar.style.width = percent + "%";
 }
 
+// Event listeners for updateFreqRange
+document.getElementById('updateFreqRange')?.addEventListener('input', (e) => {
+
+    UpdateFrequencyMs = rangeToFreqMap[e.target.value].freq || 100; //update the GLOBAL VARIABLE, default to 100 ms
+    console.log('Update frequency changed to:', UpdateFrequencyMs, 'ms');
+    updateFreqLabel.textContent = rangeToFreqMap[e.target.value].label;    
+    
+    // Clear old intervals and create new ones with updated frequency
+    clearInterval(intervalIds.currentTime);
+    clearInterval(intervalIds.sunriseCountdown);
+    clearInterval(intervalIds.sunsetCountdown);
+    clearInterval(intervalIds.seasonsCountdown);
+    clearInterval(intervalIds.userCountdown);
+    
+    intervalIds.currentTime = setInterval(updateCurrentTime, UpdateFrequencyMs);
+    intervalIds.sunriseCountdown = setInterval(updateSunriseCountdown, UpdateFrequencyMs);
+    intervalIds.sunsetCountdown = setInterval(updateSunsetCountdown, UpdateFrequencyMs);
+    intervalIds.seasonsCountdown = setInterval(update4SeasonsCountdown, UpdateFrequencyMs);
+    intervalIds.userCountdown = setInterval(updateUserCountdown, UpdateFrequencyMs);
+
+    // Save to localStorage
+    localStorage.setItem("updateFreqRangeIdx", e.target.value.toString());
+});
+
+function loadUserFreqFromCache(){
+    // load from localStorage
+    const cachedFreq = localStorage.getItem("updateFreqRangeIdx");
+    // default to 0 if not found
+    const rangeIndex = cachedFreq !== null ? parseInt(cachedFreq) : 0;
+
+    // Apply if found, update the UpdateFrequencyMs and the range input value
+    if (cachedFreq) {
+        const rangeIdx = parseInt(cachedFreq);
+        UpdateFrequencyMs = rangeToFreqMap[rangeIdx].freq || 100; //update the GLOBAL VARIABLE, default to 100 ms        
+
+        // update the label
+        updateFreqLabel.textContent = rangeToFreqMap[rangeIdx].label;
+        // update updateFreqRange input
+        document.getElementById('updateFreqRange').value = rangeIndex;        
+    }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     // Get user position first
     try {
@@ -499,12 +560,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateSunriseSunsetTime();
     updateNext4Seasons();
     loadUserTimerFromCache();
+    loadUserFreqFromCache();
 
-    // update every 100ms
-    setInterval(updateCurrentTime, 100);
-    setInterval(updateSunriseCountdown, 100);
-    setInterval(updateSunsetCountdown, 100);
-    setInterval(update4SeasonsCountdown, 100);
-    setInterval(updateUserCountdown, 100);
-
+    // update with initial frequency (UpdateFrequencyMs)
+    intervalIds.currentTime = setInterval(updateCurrentTime, UpdateFrequencyMs);
+    intervalIds.sunriseCountdown = setInterval(updateSunriseCountdown, UpdateFrequencyMs);
+    intervalIds.sunsetCountdown = setInterval(updateSunsetCountdown, UpdateFrequencyMs);
+    intervalIds.seasonsCountdown = setInterval(update4SeasonsCountdown, UpdateFrequencyMs);
+    intervalIds.userCountdown = setInterval(updateUserCountdown, UpdateFrequencyMs);
 });

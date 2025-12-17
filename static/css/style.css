@@ -54,3 +54,8 @@ body {
   /* border-radius: 0.375rem; */
   position: relative;
 }
+
+.custom-range {
+  width: 100%;
+  max-width: 150px; 
+}
